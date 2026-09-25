@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+Confirm Transfer
+{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+
+    <div class="panel-title">
+        Confirm Internal Transfer
+    </div>
+
+    <table class="data-table">
+
+        <tr>
+            <th>From Account</th>
+            <td>{{ source_account["account_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th>To Account</th>
+            <td>{{ destination_account["account_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Transfer Amount</th>
+            <td>{{ amount_cents | money }}</td>
+        </tr>
+
+    </table>
+
+    <!--
+        Nothing has moved yet.
+        This form performs the final confirmed transaction.
+    -->
+    <form
+        method="POST"
+        action="{{ url_for('confirm_transfer') }}"
+    >
+
+        <!-- Keep the validated transfer information -->
+        <input
+            type="hidden"
+            name="source_account_id"
+            value="{{ source_account['account_id'] }}"
+        >
+
+        <input
+            type="hidden"
+            name="destination_account_id"
+            value="{{ destination_account['account_id'] }}"
+        >
+
+        <input
+            type="hidden"
+            name="amount_cents"
+            value="{{ amount_cents }}"
+        >
+
+        <button type="submit">
+            Confirm Transfer
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

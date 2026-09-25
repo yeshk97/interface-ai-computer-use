@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}
+Member Profile
+{% endblock %}
+
+{% block content %}
+
+<!-- Member information panel -->
+<div class="panel">
+
+    <div class="panel-title">
+        Member Profile
+    </div>
+
+    <table class="data-table">
+
+        <tr>
+            <th>Member Number</th>
+            <td>{{ member["member_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Name</th>
+            <td>{{ member["full_name"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>{{ member["status"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Phone</th>
+            <td>{{ member["phone"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>{{ member["email"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>
+                {{ member["address"] }},
+                {{ member["city"] }},
+                {{ member["state"] }}
+                {{ member["zip_code"] }}
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+
+<!-- Member account list -->
+<div class="panel">
+
+    <div class="panel-title">
+        Accounts
+    </div>
+
+    <table class="data-table">
+
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Balance</th>
+                <th>Opened</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for account in accounts %}
+
+            <tr>
+
+                <td>{{ account["account_id"] }}</td>
+
+                <td>{{ account["account_type"] }}</td>
+
+                <td>{{ account["status"] }}</td>
+
+                <td>{{ account["balance_cents"] / 100 }}</td>
+                <td>{{ account["opened_at"] }}</td>
+
+                <td>
+                    <!-- Open this specific account -->
+                    <a
+                        class="action-link"
+                        href="{{ url_for(
+                            'account_details',
+                            account_id=account['account_id']
+                        ) }}"
+                    >
+                        Open Account
+                    </a>
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Return to member lookup -->
+<a
+    class="action-link"
+    href="{{ url_for('member_search') }}"
+>
+    Back to Member Search
+</a>
+
+{% endblock %}

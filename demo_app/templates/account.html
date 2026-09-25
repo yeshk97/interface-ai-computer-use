@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}
+Account Details
+{% endblock %}
+
+{% block content %}
+
+<!-- Account summary panel -->
+<div class="panel">
+
+    <div class="panel-title">
+        Account Details
+    </div>
+
+    <table class="data-table">
+
+        <tr>
+            <th>Account Number</th>
+            <td>{{ account["account_id"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Account Type</th>
+            <td>{{ account["account_type"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>{{ account["status"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Opened Date</th>
+            <td>{{ account["opened_at"] }}</td>
+        </tr>
+
+        <tr>
+            <th>Current Balance</th>
+            <td>
+                <strong>
+                    {{ account["balance_cents"] | money }}
+                </strong>
+            </td>
+        </tr>
+
+    </table>
+
+</div>
+
+<!-- Teller operations available for this account -->
+<div class="panel">
+
+    <div class="panel-title">
+        Teller Operations
+    </div>
+
+    <div class="form-row">
+
+        <a
+            class="action-link"
+            href="{{ url_for(
+                'teller_transaction',
+                account_id=account['account_id'],
+                operation='deposit'
+            ) }}"
+        >
+            Deposit
+        </a>
+
+        <a
+            class="action-link"
+            href="{{ url_for(
+                'teller_transaction',
+                account_id=account['account_id'],
+                operation='withdrawal'
+            ) }}"
+        >
+            Withdrawal
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Internal transfer between accounts -->
+<a
+    class="action-link"
+    href="{{ url_for(
+        'transfer',
+        source_account_id=account['account_id']
+    ) }}"
+>
+    Internal Transfer
+</a>
+
+<!-- Transaction history panel -->
+<div class="panel">
+
+    <div class="panel-title">
+        Transaction History
+    </div>
+
+    <table class="data-table">
+
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for transaction in transactions %}
+
+            <tr>
+
+                <td>
+                    {{ transaction["transaction_id"] }}
+                </td>
+
+                <td>
+                    {{ transaction["transaction_type"] }}
+                </td>
+
+                <td>
+                    {{ transaction["description"] }}
+                </td>
+
+                <td>
+                    {{ transaction["amount_cents"] | money }}
+                </td>
+
+                <td>
+                    {{ transaction["status"] }}
+                </td>
+
+                <td>
+                    {{ transaction["created_at"] }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+<!-- Go back to the member profile -->
+<a
+    class="action-link"
+    href="{{ url_for(
+        'member_profile',
+        member_id=account['member_id']
+    ) }}"
+>
+    Back to Member Profile
+</a>
+
+{% endblock %}

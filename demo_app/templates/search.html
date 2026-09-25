@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}
+Member Lookup
+{% endblock %}
+
+{% block content %}
+
+<!-- Main member search panel -->
+<div class="panel">
+
+    <div class="panel-title">
+        Member Lookup
+    </div>
+
+    <div class="form-row">
+
+        <!--
+            This form sends the entered member ID
+            back to the Flask "/" route using POST.
+        -->
+        <form method="POST">
+
+            <label for="member_id">
+                Member Number:
+            </label>
+
+            <input
+                type="text"
+                id="member_id"
+                name="member_id"
+                autocomplete="off"
+                required
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!--
+        Show a valid business outcome such as
+        "Member not found" without crashing the app.
+    -->
+    {% if error %}
+
+        <div class="error-message">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+</div>
+
+
+<!--
+    Only show the search result section
+    when the database successfully returns a member.
+-->
+{% if member %}
+
+<div class="panel">
+
+    <div class="panel-title">
+        Search Result
+    </div>
+
+    <table class="data-table">
+
+        <thead>
+            <tr>
+                <th>Member Number</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+
+                <td>
+                    {{ member["member_id"] }}
+                </td>
+
+                <td>
+                    {{ member["full_name"] }}
+                </td>
+
+                <td>
+                    {{ member["status"] }}
+                </td>
+
+                <td>
+                    {{ member["phone"] }}
+                </td>
+
+                <td>
+
+                    <!--
+                        Opens the separate Member Profile page.
+                        This keeps our workflow multi-step.
+                    -->
+                    <a
+                        class="action-link"
+                        href="{{ url_for(
+                            'member_profile',
+                            member_id=member['member_id']
+                        ) }}"
+                    >
+                        Open Member
+                    </a>
+
+                </td>
+
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endif %}
+
+{% endblock %}

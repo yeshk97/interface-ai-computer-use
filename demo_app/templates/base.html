@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        {% block title %}
+        Legacy Credit Union
+        {% endblock %}
+    </title>
+
+    <!-- Shared stylesheet used by every banking screen -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='styles.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- Top application header -->
+    <header class="system-header">
+
+        <div>
+            <h1>LEGACY CREDIT UNION</h1>
+            <span>Core Banking Operations Console</span>
+        </div>
+
+        <div class="operator-info">
+            Operator: TELLER01
+        </div>
+
+    </header>
+
+
+    <!-- Old-style banking navigation bar -->
+    <nav class="main-nav">
+
+        <a href="{{ url_for('member_search') }}">
+            Member Services
+        </a>
+
+        <a href="#">
+            Teller Operations
+        </a>
+
+        <a href="#">
+            Account Services
+        </a>
+
+        <a href="#">
+            Reports
+        </a>
+
+        <a href="#">
+            System
+        </a>
+
+    </nav>
+
+
+    <!-- Each page inserts its own content here -->
+    <main class="workspace">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- Shared footer -->
+    <footer class="system-footer">
+        Internal Banking System | Authorized Personnel Only
+    </footer>
+
+</body>
+
+</html>

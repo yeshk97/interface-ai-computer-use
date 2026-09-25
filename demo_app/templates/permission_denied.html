@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Permission Denied
+{% endblock %}
+
+{% block content %}
+
+<div class="panel">
+
+    <div class="panel-title">
+        Access Denied
+    </div>
+
+    <div class="error-message">
+
+        <strong>Permission Denied</strong>
+
+        <p>
+            You are not authorized to access member
+            {{ member_id }}.
+        </p>
+
+        <p>
+            Contact a supervisor if access is required.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

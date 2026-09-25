@@ -1,0 +1,132 @@
+/* Overall application appearance */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color: #d6d6d6;
+    color: #111;
+}
+
+
+/* Main banking-system header */
+.system-header {
+    background-color: #24466f;
+    color: white;
+    padding: 10px 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.system-header h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.system-header span {
+    font-size: 11px;
+}
+
+.operator-info {
+    font-size: 12px;
+}
+
+
+/* Old-style navigation bar */
+.main-nav {
+    background-color: #b8c4d1;
+    border-bottom: 1px solid #555;
+    padding: 7px 15px;
+}
+
+.main-nav a {
+    color: #111;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 28px;
+}
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* Main working area */
+.workspace {
+    padding: 18px;
+}
+
+
+/* Reusable legacy-style panel */
+.panel {
+    background-color: #eeeeee;
+    border: 1px solid #666;
+    margin-bottom: 18px;
+}
+
+.panel-title {
+    background-color: #607d9f;
+    color: white;
+    padding: 6px 8px;
+    font-weight: bold;
+}
+
+
+/* Tables */
+.data-table {
+    border-collapse: collapse;
+    margin: 12px;
+    background-color: white;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #777;
+    padding: 6px 10px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #c7c7c7;
+}
+
+
+/* Forms */
+.form-row {
+    padding: 15px;
+}
+
+input {
+    padding: 3px;
+    border: 1px solid #666;
+}
+
+
+/* Old-style buttons */
+button,
+.action-link {
+    background-color: #dedede;
+    border: 1px solid #555;
+    padding: 4px 12px;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Error/business-outcome message */
+.error-message {
+    margin: 15px;
+    padding: 8px;
+    border: 1px solid #990000;
+    background-color: #f2cccc;
+}
+
+
+/* Footer */
+.system-footer {
+    padding: 8px 18px;
+    font-size: 11px;
+    color: #444;
+}
